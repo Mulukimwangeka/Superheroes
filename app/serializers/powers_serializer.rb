@@ -1,3 +1,4 @@
 class PowersSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :name, :description
+
 end
