@@ -1,14 +1,15 @@
 class HerosController < ApplicationController
-    #get/heros
     def index
-        @heros = Hero.all
-        render json: @heros
-    end
-
-    #get/heros/:id
-    def show
-        @hero = Hero.find(params[:id])
-        render json: @hero
-    end
+        render json: Hero.all
+      end
+    
+      def show
+        hero = Hero.find_by(id: params[:id])
+        if hero
+        render json: hero, serializer: HerowithpowersSerializer
+        else
+          render json: {error: "Hero not found"}, status: :not_found
+        end
+      end
 
 end
